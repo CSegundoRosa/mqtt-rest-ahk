@@ -35,6 +35,9 @@ public class Server implements MqttCallback {
                 mqttServ.getClient().publish("temp", message);
                 mqttServ.setTempActual(temp);
 		ctx.result("temometro actualizado: " + mqttServ.getTempActual());
+                    CloseableHttpClient httpClient = HttpClients.createDefault();
+                    HttpGet request = new HttpGet("https://maker.ifttt.com/trigger/ahk-adm-sistemas-test/with/key/ktcnwjy8j8BKvO5BVKAKAPBtA7S6Ej0xYB6TcETbxeQ");
+                    System.out.println(httpClient.execute(request).getEntity().toString());
 	}
 	);
 	app.get("/test",ctx -> {
